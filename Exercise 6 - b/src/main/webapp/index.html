@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Student Name Suggestions</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            #suggestion-box div {
+                padding: 8px;
+                cursor: pointer;
+                border: 1px solid #ddd;
+                margin-top: -1px;
+                background-color: #f6f6f6;
+            }
+            #suggestion-box div:hover {
+                background-color: #e9e9e9;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Student Name Suggestions</h1>
+        <p>Start typing a student name:</p>
+
+        <input type="text" id="studentName" onkeyup="getSuggestions()" placeholder="Enter student name">
+        <div id="suggestion-box"></div>
+
+        <script>
+            function getSuggestions() {
+                const input = document.getElementById('studentName').value;
+                if (input.length == 0) {
+                    document.getElementById('suggestion-box').innerHTML = '';
+                    return;
+                }
+
+                const xhr = new XMLHttpRequest();
+                xhr.open("GET", "suggestingwords?query=" + input, true); // Updated to match the servlet URL
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        document.getElementById('suggestion-box').innerHTML = xhr.responseText;
+                    }
+                };
+                xhr.send();
+            }
+
+            // Function to set the selected name in the input field
+            function selectName(name) {
+                document.getElementById('studentName').value = name;
+                document.getElementById('suggestion-box').innerHTML = ''; // Clear suggestions
+            }
+        </script>
+    </body>
+</html>
