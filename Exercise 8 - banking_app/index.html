@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Banking Application</title>
+</head>
+<body>
+    <h2>Add Customer</h2>
+    <form action="insert_customer.php" method="post">
+        <label for="cname">Customer Name:</label>
+        <input type="text" name="cname" required>
+        <input type="submit" value="Add Customer">
+    </form>
+
+    <h2>Add Account</h2>
+    <form action="insert_account.php" method="post">
+        <label for="cid">Customer ID:</label>
+        <input type="number" name="cid" required>
+        <label for="atype">Account Type (S for Savings, C for Current):</label>
+        <input type="text" name="atype" pattern="[SC]" required>
+        <label for="balance">Initial Balance:</label>
+        <input type="number" name="balance" step="0.01" required>
+        <input type="submit" value="Add Account">
+    </form>
+
+    <h2>Transaction</h2>
+    <form action="insert_transaction.php" method="post">
+        <label for="ano">Account Number:</label>
+        <input type="number" name="ano" required>
+        <label for="ttype">Transaction Type (D for Deposit, W for Withdrawal):</label>
+        <input type="text" name="ttype" pattern="[DW]" required>
+        <label for="tamount">Transaction Amount:</label>
+        <input type="number" name="tamount" step="0.01" required>
+        <label for="tdate">Transaction Date:</label>
+        <input type="date" name="tdate" required>
+        <input type="submit" value="Submit Transaction">
+    </form>
+</body>
+</html>
