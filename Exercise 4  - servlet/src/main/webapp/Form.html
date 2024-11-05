@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Registration</title>
+    <style>
+        .error { color: red; }
+        .output { margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+<h2>Course Registration</h2>
+<form id="registrationForm" method="post" action="#">
+    <label>Name: <input type="text" id="student_name" required></label><span class="error" id="error_student_name"></span><br>
+    <label>Roll No: <input type="text" id="rollno" required maxlength="10"></label><span class="error" id="error_rollno"></span><br>
+    <label>Gender: <input type="radio" name="gender" value="Male" required> Male <input type="radio" name="gender" value="Female"> Female</label><span class="error" id="error_gender"></span><br>
+    <label>Year: 
+        <select id="year" required>
+            <option value="">Select</option>
+            <option value="1">1st</option>
+            <option value="2">2nd</option>
+            <option value="3">3rd</option>
+            <option value="4">4th</option>
+        </select>
+    </label><span class="error" id="error_year"></span><br>
+    <label>Dept: <input type="text" id="department" required></label><span class="error" id="error_department"></span><br>
+    <label>Mobile: <input type="text" id="mobile_no" required pattern="\d{10}"></label><span class="error" id="error_mobile_no"></span><br>
+    <label>Email: <input type="email" id="email" required></label><span class="error" id="error_email"></span><br>
+    <label>Address:<textarea id="address" required></textarea></label><span class="error" id="error_address"></span><br>
+    <input type="submit" value="Submit">
+    <input type="reset" value="Clear">
+</form>
+
+<div class="output" id="output"></div>
+
+<script>
+    document.getElementById('registrationForm').onsubmit = function(e) {
+        e.preventDefault();
+        let valid = true;
+        document.querySelectorAll('.error').forEach(el => el.textContent = '');
+
+        if (!document.getElementById('student_name').value) { document.getElementById('error_student_name').textContent = 'Required.'; valid = false; }
+        if (!document.getElementById('rollno').value) { document.getElementById('error_rollno').textContent = 'Required.'; valid = false; }
+        if (!document.querySelector('input[name="gender"]:checked')) { document.getElementById('error_gender').textContent = 'Required.'; valid = false; }
+        if (!document.getElementById('year').value) { document.getElementById('error_year').textContent = 'Required.'; valid = false; }
+        if (!document.getElementById('department').value) { document.getElementById('error_department').textContent = 'Required.'; valid = false; }
+        if (!/^\d{10}$/.test(document.getElementById('mobile_no').value)) { document.getElementById('error_mobile_no').textContent = '10 digits required.'; valid = false; }
+        if (!document.getElementById('email').checkValidity()) { document.getElementById('error_email').textContent = 'Invalid email.'; valid = false; }
+        if (!document.getElementById('address').value) { document.getElementById('error_address').textContent = 'Required.'; valid = false; }
+       
+        if (!valid) return;
+
+        // Displaying the submitted data
+        const output = document.getElementById('output');
+        const gender = document.querySelector('input[name="gender"]:checked').value;
+        
+        output.innerHTML = `
+            <h3>Submitted Details</h3>
+            <p><strong>Name:</strong> ${document.getElementById('student_name').value}</p>
+            <p><strong>Roll No:</strong> ${document.getElementById('rollno').value}</p>
+            <p><strong>Gender:</strong> ${gender}</p>
+            <p><strong>Year:</strong> ${document.getElementById('year').value}</p>
+            <p><strong>Dept:</strong> ${document.getElementById('department').value}</p>
+            <p><strong>Mobile:</strong> ${document.getElementById('mobile_no').value}</p>
+            <p><strong>Email:</strong> ${document.getElementById('email').value}</p>
+            <p><strong>Address:</strong> ${document.getElementById('address').value}</p>
+        `;
+    };
+</script>
+
+</body>
+</html>
