@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Details</title>
+    <script>
+        function fetchStudentDetails() {
+            const regNo = document.getElementById("reg_no").value;
+            if (regNo) {
+                const xhr = new XMLHttpRequest();
+                xhr.open("GET", "get_student_details.php?reg_no=" + regNo, true);
+                xhr.onload = function () {
+                    if (xhr.status === 200) {
+                        const studentDetails = JSON.parse(xhr.responseText);
+                        document.getElementById("details").innerHTML = `
+                            <h3>Student Details</h3>
+                            <p><strong>Registration Number:</strong> ${studentDetails.reg_no}</p>
+                            <p><strong>Name:</strong> ${studentDetails.name}</p>
+                            <p><strong>Age:</strong> ${studentDetails.age}</p>
+                            <p><strong>Grade:</strong> ${studentDetails.grade}</p>
+                        `;
+                    }
+                };
+                xhr.send();
+            } else {
+                document.getElementById("details").innerHTML = "";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Select Student Registration Number</h2>
+
+    <form>
+        <label for="reg_no">Registration Number:</label>
+        <select name="reg_no" id="reg_no" onchange="fetchStudentDetails()">
+            <option value="">Select</option>
+            <?php foreach ($regNumbers as $regNo): ?>
+                <option value="<?= $regNo ?>"><?= $regNo ?></option>
+            <?php endforeach; ?>
+        </select>
+    </form>
+
+    <div id="details"></div>
+</body>
+</html>
