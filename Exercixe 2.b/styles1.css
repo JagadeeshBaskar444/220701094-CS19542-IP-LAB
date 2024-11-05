@@ -1,0 +1,45 @@
+.head {
+    background-color: #7d0dc3;
+    text-align: center;
+    color: black; /* Keep the rest of the text color normal */
+    border-bottom: 1px solid;
+}
+
+.address {
+    text-align-last: center;
+    font-size: 30px;
+    font-weight: bold;
+    color: black; /* Keep the rest of the text color normal */
+}
+
+.content {
+    background-color: #7d0dc3;
+    width: 20%;
+    padding: 20px;
+    text-align: left;
+    line-height: 25px;
+    height: 65vh;
+    font-size: 20px;
+    color: whitesmoke; /* This makes the left sidebar content white */
+}
+
+.side-content {
+    text-align: left;
+    font-size: 30px;
+    font-weight: bold;
+    justify-content: center;
+    padding: 20px;
+    position: absolute;
+    top: 200px;
+    left: 25%;
+    line-height: 30px;
+    color: black; /* Keep the rest of the text color normal */
+}
+.table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    font-size: 25px;
+  }
+.th, td {
+    background-color: rgb(219, 219, 219);
+  }
