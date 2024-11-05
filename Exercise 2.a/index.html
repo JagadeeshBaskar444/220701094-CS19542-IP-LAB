@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>India Map with Hotspots</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .info {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>India Map with Hotspots</h1>
+    <img src="india-map.jpg" usemap="#india-map" alt="Map of India">
+    <map name="india-map" id="india-map">
+        <area shape="rect" coords="75,125,200,300" href="tamilnadu.html" alt="Tamil Nadu">
+        <area shape="rect" coords="225,325,350,500" href="andhra.html" alt="Andhra Pradesh">
+        <area shape="rect" coords="50,75,200,250" href="maharashtra.html" alt="Maharashtra">
+        <area shape="rect" coords="400,425,500,600" href="odisha.html" alt="Odisha">
+    </map>
+    <div class="info">
+        <p>Click on the hotspots to learn more about each state.</p>
+    </div>
+</body>
+</html>
